@@ -1,0 +1,42 @@
+@startuml
+left to right direction
+actor HR as "HR"
+
+rectangle Employee_Database
+
+rectangle "Organisation system" {
+    usecase UC1 as "Produce a Report on the Salary
+    of all Employees"
+    usecase UC2 as "Produce a Report on the Salary
+    of Employees of a Given Department"
+    usecase UC3 as "Produce a Report on the Salary
+    of Employees of a Department"
+    usecase UC4 as "Produce a Report on the Salary
+    of Employees of a Given Role"
+    usecase UC5 as "Add new employee details
+    to the database"
+    usecase UC6 as "Produce a Report on a given
+    employees details"
+    usecase UC7 as "Update a given employees details"
+    usecase UC8 as "Delete a given employees details"
+
+    UC1 -- Employee_Database
+    UC2 -- Employee_Database
+    UC3 -- Employee_Database
+    UC4 -- Employee_Database
+    UC5 -- Employee_Database
+    UC6 -- Employee_Database
+    UC7 -- Employee_Database
+    UC8 -- Employee_Database
+
+
+HR -- UC1
+HR -- UC2
+HR -- UC3
+HR -- UC4
+HR -- UC5
+HR -- UC6
+HR -- UC7
+HR -- UC8
+
+@enduml
