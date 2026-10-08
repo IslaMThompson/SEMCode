@@ -18,6 +18,7 @@ public class App
         a.displayEmployee(emp);
         // Get department info
         ArrayList<Employee> dept = a.getDepSalary("Engineer");
+        a.displayEmployees(dept);
 
         // Disconnect from database
         a.disconnect();
@@ -86,6 +87,12 @@ public class App
             }
         }
     }
+
+    /**
+     * Method to get the employee information from a specific id
+     * @param ID
+     * @return employee
+     */
     public Employee getEmployee(int ID)
     {
         try
@@ -120,8 +127,13 @@ public class App
         }
     }
 
+    /**
+     * Method to display an individual employee
+     * @param emp
+     */
     public void displayEmployee(Employee emp)
     {
+        // If there is an employee, print it
         if (emp != null)
         {
             System.out.println(
@@ -134,6 +146,12 @@ public class App
                             + "Manager: " + emp.manager + "\n");
         }
     }
+
+    /**
+     * Method to get all employees from a specific department
+     * @param Title
+     * @return Employee arraylist
+     */
     public ArrayList<Employee> getDepSalary(String Title)
     {
         try
@@ -142,15 +160,15 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT employees.emp_no, employees.first_name, employees.last_name, salaries.salary"
-                            + "FROM employees, salaries, titles"
-                            + "WHERE employees.emp_no = salaries.emp_no AND employees.emp_no = titles.emp_no" +
-                            "AND salaries.to_date = '9999-01-01'" +
-                            "AND titles.to_date = '9999-01-01'" +
+                    "SELECT employees.emp_no, employees.first_name, employees.last_name, salaries.salary "
+                            + "FROM employees, salaries, titles "
+                            + "WHERE employees.emp_no = salaries.emp_no AND employees.emp_no = titles.emp_no " +
+                            "AND salaries.to_date = '9999-01-01' " +
+                            "AND titles.to_date = '9999-01-01' " +
                             "AND titles.title = '" + Title + "'";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new employee if valid  and adding to the arraylist
             ArrayList<Employee> employees = new ArrayList<>();
             while (rset.next())
             {
@@ -168,6 +186,27 @@ public class App
             System.out.println(e.getMessage());
             System.out.println("Failed to get employee details");
             return null;
+        }
+    }
+
+    /**
+     * Method to display all employees from an arraylist
+     * @param emplist
+     */
+    public void displayEmployees(ArrayList<Employee> emplist)
+    {
+        // Runs for the full list if there is something in the list
+        if (emplist != null)
+        {
+            for(int i = 0; i < emplist.size(); i++) {
+                System.out.println(
+                        emplist.get(i).emp_no + " "
+                                + emplist.get(i).first_name + " "
+                                + emplist.get(i).last_name + " "
+                                + emplist.get(i).title + " "
+                                + "Salary:" + emplist.get(i).salary + " "
+                                + emplist.get(i).dept_name + " ");
+            }
         }
     }
 }
