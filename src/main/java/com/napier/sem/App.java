@@ -12,21 +12,56 @@ public class App
 
         // Connect to database
         a.connect();
-        // Get Employee
-        //Employee emp = a.getEmployee(255530);
-        // Display results
-        //a.displayEmployee(emp);
-        // Get department info
-        //ArrayList<Employee> dept = a.getDepSalary("Engineer");
-        //a.displayEmployees(dept);
 
-        // Extract employee salary information
-        ArrayList<Employee> employees = a.getAllSalaries();
-        a.printSalaries(employees);
+        // Individual employees information
+        a.employeeInformation(a, 255530);
+
+        // Get salaries by role
+        a.employeeRole(a, "Engineer");
+
+        // Extract all employee salary information
+        a.employeeSalaries(a);
 
         // Disconnect from database
         a.disconnect();
     }
+
+    /**
+     * Gets an individual employees information, found by their id
+     * @param a
+     * @param emp_id
+     */
+    public void employeeInformation(App a, int emp_id)
+    {
+        // Get Employee
+        Employee emp = a.getEmployee(emp_id);
+        // Display results
+        a.displayEmployee(emp);
+    }
+
+    /**
+     * Gets information of all employees with a specific role
+     * @param a
+     * @param title
+     */
+    public void employeeRole(App a, String title)
+    {
+        // Get Role info
+        ArrayList<Employee> dept = a.getRoleSalary(title);
+        a.displayEmployees(dept);
+    }
+
+    /**
+     * Gets all employee salaries
+     * @param a
+     */
+    public void employeeSalaries(App a)
+    {
+        // Extract employee salary information
+        ArrayList<Employee> employees = a.getAllSalaries();
+        a.printSalaries(employees);
+    }
+
     /**
      * Connection to MySQL database.
      */
@@ -152,11 +187,11 @@ public class App
     }
 
     /**
-     * Method to get all employees from a specific department
+     * Method to get all employees from a specific role
      * @param Title
      * @return Employee arraylist
      */
-    public ArrayList<Employee> getDepSalary(String Title)
+    public ArrayList<Employee> getRoleSalary(String Title)
     {
         try
         {
