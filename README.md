@@ -9,3 +9,5 @@ Just a change to check if my workflow is working
 [![Releases](https://img.shields.io/github/release/IslaMThompson/Group1/all.svg?style=flat-square)](https://github.com/IslaMThompson/Group1/releases)
 
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/IslaMThompson/Group1/A%20workflow%20for%20my%20Hello%20World%20App/develop?style=flat-square)
+
+[![codecov](https://codecov.io/gh/IslaMThompson/SEMCode/graph/badge.svg?token=EIVMP33K33)](https://codecov.io/gh/IslaMThompson/SEMCode)
